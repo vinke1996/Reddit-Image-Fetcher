@@ -7,7 +7,7 @@
     "@types/node": "^11.13.4",
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
-    "tslint": "^5.15.0",
+    "tslint": "^5.18.0",
     "tslint-config-airbnb": "^5.11.1"
   },
   "devDependencies": {
