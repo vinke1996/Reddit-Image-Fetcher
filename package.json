@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@types/node": "^12.6.4",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "lodash": "^4.17.13",
     "tslint": "^5.18.0",
     "tslint-config-airbnb": "^5.11.1"
