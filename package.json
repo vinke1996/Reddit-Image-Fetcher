@@ -4,7 +4,7 @@
   "description": "This package will fetch a random image/gif/video from the provided subreddits.",
   "main": "index.js",
   "dependencies": {
-    "@types/node": "^11.13.4",
+    "@types/node": "^12.6.4",
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
     "tslint": "^5.15.0",
