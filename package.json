@@ -11,11 +11,15 @@
     "tslint-config-airbnb": "^5.11.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.123"
+    "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.123",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "start": "",
-    "test": "node test/index.js"
+    "test": "jest"
   },
   "keywords": [
     "image",
