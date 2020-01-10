@@ -18,7 +18,8 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "start": "",
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "jest"
   },
   "keywords": [
