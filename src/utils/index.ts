@@ -50,7 +50,7 @@ export function getPreviewImage(post: Post): MediaObj {
 }
 
 export function getPreviewGif(post: Post): MediaObj {
-  if (_.isObject(post.preview)) {
+  if (_.isObject(post.preview) && !_.isEmpty(post.preview.reddit_video_preview)) {
     const gifPreviewPost = post.preview.reddit_video_preview;
     mediaObj.subredditName = post.subreddit;
     mediaObj.imageSource = gifPreviewPost.fallback_url;
