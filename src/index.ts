@@ -5,6 +5,7 @@ import { Post, Posts, MediaObj } from './types';
 import {
   getMediaRedditVideo,
   getPreviewImage,
+  getPreviewGif,
   getSecureMediaEmbedVideo,
   getSecureMediaRedditVideo,
 } from './utils';
@@ -60,9 +61,10 @@ function getMediaFromPost(post: Post): MediaObj {
   };
 
   response = getPreviewImage(post);
-  response = getSecureMediaEmbedVideo(post);
-  response = getMediaRedditVideo(post);
-  response = getSecureMediaRedditVideo(post);
+  response = getPreviewGif(post);
+  // response = getSecureMediaEmbedVideo(post);
+  // response = getMediaRedditVideo(post);
+  // response = getSecureMediaRedditVideo(post);
 
   return response;
 }
