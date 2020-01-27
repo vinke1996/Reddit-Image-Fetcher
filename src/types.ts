@@ -18,10 +18,6 @@ interface ImagePreview {
   };
 }
 
-interface GifPreview {
-  fallback_url: String;
-}
-
 /**
  * This interface represents a single submission in a subreddit
  */
@@ -30,7 +26,6 @@ export interface Post {
   is_video: Boolean;
   preview?: {
     images: ImagePreview[];
-    reddit_video_preview: GifPreview
   };
   media?: Media;
   secure_media?: Media;

@@ -48,14 +48,3 @@ export function getPreviewImage(post: Post): MediaObj {
 
   return mediaObj;
 }
-
-export function getPreviewGif(post: Post): MediaObj {
-  if (_.isObject(post.preview)) {
-    const gifPreviewPost = post.preview.reddit_video_preview;
-    mediaObj.subredditName = post.subreddit;
-    mediaObj.imageSource = gifPreviewPost.fallback_url;
-    mediaObj.mediaType = 'gif';
-  }
-
-  return mediaObj;
-}
