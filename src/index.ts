@@ -11,7 +11,7 @@ import {
 } from './utils';
 
 const BASE_URL = 'https://www.reddit.com/r/';
-const EXTENSION = '.json?raw_json=1';
+const EXTENSION = '.json?raw_json=1&limit=100';
 
 /**
  * Fetch posts from provided subreddits using the reddit api.
