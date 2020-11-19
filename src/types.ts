@@ -49,5 +49,5 @@ export interface Posts extends Array<{data: Post}>{}
 export interface MediaObj {
   subredditName: String;
   imageSource: String;
-  mediaType: ''|'gif'|'video'|'image';
+  mediaType: ''|'error'|'gif'|'video'|'image';
 }

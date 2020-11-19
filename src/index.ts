@@ -94,6 +94,14 @@ async function fetch(subreddits: String | String[]): Promise<MediaObj> {
   }
 
   const posts = await fetchPosts(subs);
+  if(Array.isArray(posts) && !posts.length){
+    return {
+      subredditName: '',
+      imageSource: '',
+      mediaType: 'error',
+    };
+  }
+
   let post = pickRandomPost(posts);
 
   while (!postHasMedia(post)) {
