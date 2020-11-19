@@ -63,7 +63,7 @@ function getMediaFromPost(post: Post): MediaObj {
   response = getPreviewImage(post);
   response = getPreviewGif(post);
   // response = getSecureMediaEmbedVideo(post);
-  // response = getMediaRedditVideo(post);
+  response = getMediaRedditVideo(post);
   // response = getSecureMediaRedditVideo(post);
 
   return response;
