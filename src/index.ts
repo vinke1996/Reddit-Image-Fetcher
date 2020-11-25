@@ -22,8 +22,8 @@ const EXTENSION = '.json?raw_json=1&limit=100';
 async function fetchPosts(subreddits: String): Promise<Posts> {
   const url = BASE_URL + subreddits + EXTENSION;
   const response = await axios.get(url);
-
-  return _.get(response, ['data', 'data', 'children']);
+  const children = response.data.data.children;
+  return children.length > 1 ? children : [];
 }
 
 /**
