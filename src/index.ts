@@ -38,8 +38,9 @@ function postHasMedia(post: Post): Boolean {
   const hasSecureMedia = _.isObject(post.secure_media) && !_.isEmpty(post.secure_media);
   const hasSecureMediaEmbed =
   _.isObject(post.secure_media_embed) && !_.isEmpty(post.secure_media_embed);
+  const notPinned = !post.stickied;
 
-  return (hasImage || hasMedia || hasSecureMedia || hasSecureMediaEmbed);
+  return (hasImage || hasMedia || hasSecureMedia || hasSecureMediaEmbed || notPinned);
 }
 
 /**
@@ -96,7 +97,7 @@ async function fetch(subreddits: String | String[]): Promise<MediaObj> {
   const posts = await fetchPosts(subs);
   if(Array.isArray(posts) && !posts.length){
     return {
-      subredditName: '',
+      subredditName: 'Deze subreddit bestaat niet!',
       imageSource: '',
       mediaType: 'error',
     };

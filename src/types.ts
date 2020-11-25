@@ -34,7 +34,8 @@ export interface Post {
   };
   media?: Media;
   secure_media?: Media;
-  secure_media_embed?: SecureMediaEmbed
+  secure_media_embed?: SecureMediaEmbed;
+  stickied: Boolean;
 }
 
 /**

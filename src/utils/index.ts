@@ -2,9 +2,9 @@ import _ from 'lodash';
 import { Post, MediaObj } from '../types';
 
 const mediaObj: MediaObj = {
-  subredditName: '',
+  subredditName: 'Kon geen foto/video ophalen!',
   imageSource: '',
-  mediaType: '',
+  mediaType: 'error',
 };
 
 export function getSecureMediaRedditVideo(post: Post): MediaObj {
