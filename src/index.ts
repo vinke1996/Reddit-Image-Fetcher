@@ -40,9 +40,9 @@ async function fetchPosts(subreddits: String): Promise<Posts> {
  * Check if the post has eiter an image, video or gif.
  * @param {Post} post
  *
- * @returns {Boolean}
+ * @returns {Promise<Boolean>}
  */
-function postHasMedia(post: Post): Boolean {
+async function postHasMedia(post: Post): Promise<Boolean> {
   const hasImage = _.isObject(post.preview) && !_.isEmpty(post.preview);
   const hasMedia = _.isObject(post.media) && !_.isEmpty(post.media);
   const hasSecureMedia = _.isObject(post.secure_media) && !_.isEmpty(post.secure_media);
@@ -62,9 +62,9 @@ function postHasMedia(post: Post): Boolean {
  *
  * @param post
  * 
- * @returns {MediaObj} with the subredditname, image source and media type.
+ * @returns {Promise<MediaObj>} with the subredditname, image source and media type.
  */
-function getMediaFromPost(post: Post): MediaObj {
+async function getMediaFromPost(post: Post): Promise<MediaObj> {
   let response: MediaObj = {
     subredditName: '',
     imageSource: '',
@@ -84,9 +84,9 @@ function getMediaFromPost(post: Post): MediaObj {
  *
  * @param {Posts} posts
  *
- * @returns {Post}
+ * @returns {Promise<Post>}
  */
-function pickRandomPost(posts: Posts): Post {
+async function pickRandomPost(posts: Posts): Promise<Post> {
   const shuffledPosts = _.shuffle(posts);
   const rndIndex = _.random(shuffledPosts.length - 1);
   return shuffledPosts[rndIndex].data;
@@ -113,13 +113,13 @@ async function fetch(subreddits: String | String[]): Promise<MediaObj> {
     };
   }
 
-  let post = pickRandomPost(posts);
+  let post = await pickRandomPost(posts);
 
-  while (!postHasMedia(post)) {
-    post = pickRandomPost(posts);
+  while (await !postHasMedia(post)) {
+    post = await pickRandomPost(posts);
   }
 
-  const mediaPost = getMediaFromPost(post);
+  const mediaPost = await getMediaFromPost(post);
 
   return mediaPost;
 }
