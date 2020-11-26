@@ -21,9 +21,19 @@ const EXTENSION = '.json?raw_json=1&limit=100';
  */
 async function fetchPosts(subreddits: String): Promise<Posts> {
   const url = BASE_URL + subreddits + EXTENSION;
-  const response = await axios.get(url);
-  const children = response.data.data.children;
-  return children.length > 1 ? children : [];
+
+  return (async() => {
+    let reddit = null;
+    try {
+      reddit = await axios.get(url);
+      const children = reddit.data.data.children;
+      return children.length > 1 ? children : [];
+    } catch (err) {
+      reddit = err.response;
+      return [];
+    }
+  })();
+
 }
 
 /**
@@ -64,7 +74,7 @@ function getMediaFromPost(post: Post): MediaObj {
   response = getPreviewImage(post);
   response = getPreviewGif(post);
   // response = getSecureMediaEmbedVideo(post);
-  //response = getMediaRedditVideo(post);
+  response = getMediaRedditVideo(post);
   // response = getSecureMediaRedditVideo(post);
 
   return response;
