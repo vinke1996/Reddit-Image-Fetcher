@@ -77,6 +77,11 @@ async function getMediaFromPost(post: Post): Promise<MediaObj> {
   response = getMediaRedditVideo(post);
   // response = getSecureMediaRedditVideo(post);
 
+  if(_.isEmpty(response.subredditName) && _.isEmpty(response.imageSource) && _.isEmpty(response.mediaType)){
+    response.subredditName = 'Kon geen foto/video ophalen!';
+    response.imageSource = '';
+    response.mediaType = 'error';
+  }
   return response;
 }
 

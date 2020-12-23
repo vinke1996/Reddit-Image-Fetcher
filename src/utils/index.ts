@@ -2,12 +2,19 @@ import _ from 'lodash';
 import { Post, MediaObj } from '../types';
 
 const mediaObj: MediaObj = {
-  subredditName: 'Kon geen foto/video ophalen!',
+  subredditName: '',
   imageSource: '',
-  mediaType: 'error',
+  mediaType: '',
 };
 
+function resetMediaObj(mediaObj: MediaObj){
+  mediaObj.subredditName = '';
+  mediaObj.imageSource = '';
+  mediaObj.mediaType = '';
+}
+
 export function getSecureMediaRedditVideo(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
   if (_.isObject(post.secure_media) && post.secure_media.reddit_video) {
     mediaObj.subredditName = post.subreddit;
     mediaObj.imageSource = post.secure_media.reddit_video.fallback_url;
@@ -18,6 +25,7 @@ export function getSecureMediaRedditVideo(post: Post): MediaObj {
 }
 
 export function getMediaRedditVideo(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
   if (_.isObject(post.media) && post.media.reddit_video) {
     mediaObj.subredditName = post.subreddit;
     mediaObj.imageSource = post.media.reddit_video.fallback_url;
@@ -28,6 +36,7 @@ export function getMediaRedditVideo(post: Post): MediaObj {
 }
 
 export function getSecureMediaEmbedVideo(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
   if (_.isObject(post.secure_media_embed) && !_.isEmpty(post.secure_media_embed)) {
     const secureMediaEmbedPost = post.secure_media_embed;
     mediaObj.subredditName = post.subreddit;
@@ -39,6 +48,7 @@ export function getSecureMediaEmbedVideo(post: Post): MediaObj {
 }
 
 export function getPreviewImage(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
   if (_.isObject(post.preview)) {
     const imagePreviewPost = post.preview.images[0];
     mediaObj.subredditName = post.subreddit;
@@ -50,6 +60,7 @@ export function getPreviewImage(post: Post): MediaObj {
 }
 
 export function getPreviewGif(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
   if (_.isObject(post.preview) && !_.isEmpty(post.preview.reddit_video_preview)) {
     const gifPreviewPost = post.preview.reddit_video_preview;
     mediaObj.subredditName = post.subreddit;
