@@ -7,6 +7,35 @@ const mediaObj: MediaObj = {
   mediaType: '',
 };
 
+function resetMediaObj(mediaObj: MediaObj){
+  mediaObj.subredditName = '';
+  mediaObj.imageSource = '';
+  mediaObj.mediaType = '';
+}
+
+export function getPreviewImage(post: Post): MediaObj {
+  resetMediaObj(mediaObj);
+  if (_.isObject(post.preview)) {
+    const imagePreviewPost = post.preview.images[0];
+    mediaObj.subredditName = post.subreddit;
+    mediaObj.imageSource = imagePreviewPost.source.url;
+    mediaObj.mediaType = 'image';
+  }
+
+  return mediaObj;
+}
+
+export function getPreviewGif(post: Post): MediaObj {
+  if (_.isObject(post.preview) && !_.isEmpty(post.preview.reddit_video_preview)) {
+    const gifPreviewPost = post.preview.reddit_video_preview;
+    mediaObj.subredditName = post.subreddit;
+    mediaObj.imageSource = gifPreviewPost.fallback_url;
+    mediaObj.mediaType = 'gif';
+  }
+
+  return mediaObj;
+}
+
 export function getSecureMediaRedditVideo(post: Post): MediaObj {
   if (_.isObject(post.secure_media) && post.secure_media.reddit_video) {
     mediaObj.subredditName = post.subreddit;
@@ -33,17 +62,6 @@ export function getSecureMediaEmbedVideo(post: Post): MediaObj {
     mediaObj.subredditName = post.subreddit;
     mediaObj.imageSource = secureMediaEmbedPost.media_domain_url;
     mediaObj.mediaType = 'video';
-  }
-
-  return mediaObj;
-}
-
-export function getPreviewImage(post: Post): MediaObj {
-  if (_.isObject(post.preview)) {
-    const imagePreviewPost = post.preview.images[0];
-    mediaObj.subredditName = post.subreddit;
-    mediaObj.imageSource = imagePreviewPost.source.url;
-    mediaObj.mediaType = 'image';
   }
 
   return mediaObj;

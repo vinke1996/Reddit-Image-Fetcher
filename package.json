@@ -1,8 +1,8 @@
 {
   "name": "reddit-image-fetcher",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "This package will fetch a random image/gif/video from the provided subreddits.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "@types/node": "^12.11.1",
     "axios": "^0.19.0",
@@ -18,7 +18,8 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "start": "",
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "jest"
   },
   "keywords": [
