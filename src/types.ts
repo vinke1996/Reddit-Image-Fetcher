@@ -26,6 +26,7 @@ interface GifPreview {
  * This interface represents a single submission in a subreddit
  */
 export interface Post {
+  permalink: String;
   subreddit: String;
   is_video: Boolean;
   preview?: {
@@ -48,6 +49,7 @@ export interface Posts extends Array<{data: Post}>{}
  * It contains information about the subreddit, a link to the fetched media and the media type.
  */
 export interface MediaObj {
+  permalink: String;
   subredditName: String;
   imageSource: String;
   mediaType: ''|'error'|'gif'|'video'|'image';

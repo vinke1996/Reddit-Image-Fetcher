@@ -66,6 +66,7 @@ async function postHasMedia(post: Post): Promise<Boolean> {
  */
 async function getMediaFromPost(post: Post): Promise<MediaObj> {
   let response: MediaObj = {
+    permalink: '',
     subredditName: '',
     imageSource: '',
     mediaType: '',
@@ -112,6 +113,7 @@ async function fetch(subreddits: String | String[]): Promise<MediaObj> {
   const posts = await fetchPosts(subs);
   if(Array.isArray(posts) && !posts.length){
     return {
+      permalink: '',
       subredditName: 'Deze subreddit bestaat niet!',
       imageSource: '',
       mediaType: 'error',
